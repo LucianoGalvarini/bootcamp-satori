@@ -1,23 +1,28 @@
 import React from "react";
-import {Post} from "./Post";
-export const PostsList = ({posts, setPosts}) => {
+import { Post } from "./Post";
+
+export const PostsList = ({ posts, deletePost, editPost }) => {
     const handleDeletePost = (id) => {
-        const newPosts = posts.filter((post) => post.id !== id);
-        setPosts(newPosts);
-    }
+        deletePost(id);
+    };
 
-    const handleEditPost = (dataPost) => {
-
-    }
+    const handleEditPost = (id, updatedData) => {
+        editPost(id, updatedData);
+    };
 
     return (
-        <div className='container' style={styles.container}>
-            <h1 className='title' style={styles.title}>
+        <div className="container" style={styles.container}>
+            <h1 className="title" style={styles.title}>
                 Posts
             </h1>
             <ul style={styles.postList}>
                 {posts.map((post) => (
-                   <Post key={post.id} post={post} handleDeletePost={handleDeletePost} handleEditPost={handleEditPost}/>
+                    <Post
+                        key={post.id}
+                        post={post}
+                        handleDeletePost={handleDeletePost}
+                        handleEditPost={handleEditPost}
+                    />
                 ))}
             </ul>
         </div>
@@ -26,18 +31,18 @@ export const PostsList = ({posts, setPosts}) => {
 
 const styles = {
     container: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '50%',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "50%",
     },
     title: {
-        color: '#333',
-        fontSize: '24px',
-        marginBottom: '20px',
+        color: "#333",
+        fontSize: "24px",
+        marginBottom: "20px",
     },
     postList: {
-        listStyle: 'none',
+        listStyle: "none",
         padding: 0,
     },
 };
